@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SuperHero</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+</head>
+
+<body>
+
+    <div class="search-container">
+
+        <div class="search-container__searchbar">
+            <input id="search-input" type="text" class="search-container__searchbar__input"
+                oninput="searchApi(this.value)" />
+            <i class="material-icons">search</i>
+        </div>
+
+        <div id='result-container' class="search-container__search-result-container">
+
+        </div>
+
+        <button type="button" onclick="openFav()" class="favlist-btn">Favorites Heros</button>
+        <script src='superhero.js'></script>
+</body>
+
+</html>
