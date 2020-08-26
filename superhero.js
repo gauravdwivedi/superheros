@@ -57,8 +57,13 @@ init = (data) => {
         // rescontainer.appendChild(ele);
         rescontainer.prepend(ele);
         favBtn.addEventListener('click', (e) => {
+            
+            // FavList.push(item);
 
-            openFav(item);
+            
+
+            //openFav(item);
+            CheckOnLoad();
 
         });
 
@@ -66,7 +71,21 @@ init = (data) => {
     })
 }
 
+
+CheckOnLoad = () => {
+
+    let saved = localStorage.getItem('FavList');
+
+    if (saved) {
+        saved.map((item) => {
+            console.log('Item', item);
+        })
+    }
+
+}
+
 openFav = (item) => {
+
     //Hide Search list when added item to fav
     hideList();
     console.log("Inside Fav List function", item);
