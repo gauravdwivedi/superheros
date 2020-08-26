@@ -1,19 +1,21 @@
 let FavList = [];
 
 const rescontainer = document.getElementById('result-container');
+const containerele = document.getElementById('fav-list-container');
 async function searchApi(val) {
     try {
         const res = await fetch(`https://superheroapi.com/api.php/10157143645741244/search/${val}`);
 
 
-        console.log(res);
+
         const data = await res.json();
 
         if (data.response !== 'error') {
+
+            console.log('Inside Data', data.response);
             init(data);
         } else {
-            rescontainer.style.visibility = "hidden";
-            rescontainer.style.opacity = "0";
+            hideList();
         }
     }
     catch (err) {
@@ -51,38 +53,53 @@ init = (data) => {
 
         ele.appendChild(image);
         ele.appendChild(txtele);
-        rescontainer.appendChild(ele);
 
+        // rescontainer.appendChild(ele);
+        rescontainer.prepend(ele);
         favBtn.addEventListener('click', (e) => {
+
 
             FavList.push(item);
             console.log(FavList);
+
+            localStorage.setItem("data", item);
+
+            openFav(item);
+
         });
 
-        let favele = document.createElement("div");
+
     })
 }
 
-openFav = () => {
-    console.log("Inside Fav List function");
-    FavList.map((item) => {
+openFav = (item) => {
+    hideList();
+    console.log("Inside Fav List function", item);
 
-        let containerele = document.createElement("div");
+    // let containerele = document.createElement("div");
+    containerele.classList.add("fav-list");
 
-        let favImg = document.createElement("img");
-        favImg.setAttribute("src", item.image.url);
-        let titleEle = document.createElement("div");
+    let favImg = document.createElement("img");
+    favImg.setAttribute("src", item.image.url);
 
-        let titletxt = document.createElement("span");
-        titletxt.innerText = item.name;
-        titleEle.appendChild(titletxt);
+    let titleEle = document.createElement("div");
+    titleEle.classList.add("fav-list__title");
+    let titletxt = document.createElement("span");
+    titletxt.innerText = item.name;
+    titleEle.appendChild(titletxt);
 
-        let bioInfo = document.createElement("p");
-        bioInfo.innerText = item.biography;
-        console.log(bioInfo);
-        titleEle.appendChild(bioInfo);
+    let bioInfo = document.createElement("p");
+    bioInfo.innerText = item.biography["full-name"];
+    console.log(bioInfo);
+    titleEle.appendChild(bioInfo);
 
-        containerele.appendChild(favImg);
-        containerele.appendChild(titleEle);
-    })
+    containerele.appendChild(favImg);
+    containerele.appendChild(titleEle);
+
+
+}
+
+hideList = () => {
+    rescontainer.style.visibility = "hidden";
+    rescontainer.style.opacity = "0";
 }

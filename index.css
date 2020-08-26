@@ -1,9 +1,10 @@
+
+
 .search-container{
-    position: absolute;
+    position: relative;
     max-width: 250px;
     
 }
-
 
 .search-container__searchbar{
     display: inline-flex;
@@ -24,7 +25,6 @@
     box-shadow: 0 0 3px rgb(0, 0,0, 0.3);
 }
 
-
 .search-container__searchbar__input{
     flex-grow: 1;
     border: none;
@@ -43,11 +43,12 @@
 }
 
 .search-container__search-result-container{
+    position: absolute;
     margin: 20px;
     max-height: 250px;
     overflow: auto;
-/*     
-    visibility: hidden;
+    
+    /* visibility: hidden;
     opacity: 0; */
     transition :visibility 0.1s, opcaity 0.1s;
 
@@ -99,4 +100,29 @@
 .favlist-btn{
     width: 100px;
     height: 50px;
+    position: absolute;
+}
+
+
+
+/*Fav List*/
+
+.fav-list{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
+    height: 500px;
+}
+
+.fav-list img{
+    width: 150px;
+    height: 150px;
+}
+
+.fav-list__title{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
