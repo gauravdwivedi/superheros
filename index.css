@@ -1,5 +1,5 @@
 
-
+/*Search Container*/
 .search-container{
     position: relative;
     max-width: 250px;
@@ -114,15 +114,33 @@
     margin: 10px;
     width: 500px;
     height: 500px;
+    
 }
 
-.fav-list img{
-    width: 150px;
-    height: 150px;
+.fav-list-container__item{
+    display: flex;
+    flex-direction: row;
+
+    
+}
+.fav-list-container__item-img{
+    width: 250px;
+    height: 250px;
+  
 }
 
 .fav-list__title{
     display: flex;
     flex-direction: column;
     margin: 10px;
+   
+}
+
+.fav-list__title button{
+    height: 50px;
+    width: 80px;
+    background: tomato;
+    border-radius: 30px;
+    border: none;
+    outline-style: none;
 }

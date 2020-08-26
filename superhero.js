@@ -73,8 +73,12 @@ openFav = (item) => {
     // let containerele = document.createElement("div");
     containerele.classList.add("fav-list");
 
+    let favListInsideContainer = document.createElement("div");
+    favListInsideContainer.classList.add("fav-list-container__item");
+
     let favImg = document.createElement("img");
     favImg.setAttribute("src", item.image.url);
+    favImg.classList.add("fav-list-container__item-img");
 
     let titleEle = document.createElement("div");
     titleEle.classList.add("fav-list__title");
@@ -83,12 +87,29 @@ openFav = (item) => {
     titleEle.appendChild(titletxt);
 
     let bioInfo = document.createElement("p");
-    bioInfo.innerText = item.biography["full-name"];
-    console.log(bioInfo);
+    bioInfo.innerText = "Full Name : " + item.biography["full-name"];
+
     titleEle.appendChild(bioInfo);
 
-    containerele.appendChild(favImg);
-    containerele.appendChild(titleEle);
+
+    let combat = document.createElement("p");
+    combat.innerText = "combat : " + item.powerstats["combat"];
+    titleEle.appendChild(combat);
+
+    let power = document.createElement("p");
+    power.innerText = "Power : " + item.powerstats["power"];
+    titleEle.appendChild(power);
+
+
+    let removefromFavBtn = document.createElement("button");
+    removefromFavBtn.innerText = "UnFav";
+    titleEle.appendChild(removefromFavBtn);
+
+
+
+    favListInsideContainer.appendChild(favImg);
+    favListInsideContainer.appendChild(titleEle);
+    containerele.prepend(favListInsideContainer);
 
 
 
@@ -97,4 +118,7 @@ openFav = (item) => {
 hideList = () => {
     rescontainer.style.visibility = "hidden";
     rescontainer.style.opacity = "0";
+
+    let inputCont = document.getElementById('search-input');
+    inputCont.value = '';
 }
