@@ -56,6 +56,7 @@ init = (data) => {
         favBtn.addEventListener('click', (e) => {
 
             FavList.push(item);
+            console.log(FavList);
         });
 
         let favele = document.createElement("div");
@@ -63,5 +64,25 @@ init = (data) => {
 }
 
 openFav = () => {
-    
+    console.log("Inside Fav List function");
+    FavList.map((item) => {
+
+        let containerele = document.createElement("div");
+
+        let favImg = document.createElement("img");
+        favImg.setAttribute("src", item.image.url);
+        let titleEle = document.createElement("div");
+
+        let titletxt = document.createElement("span");
+        titletxt.innerText = item.name;
+        titleEle.appendChild(titletxt);
+
+        let bioInfo = document.createElement("p");
+        bioInfo.innerText = item.biography;
+        console.log(bioInfo);
+        titleEle.appendChild(bioInfo);
+
+        containerele.appendChild(favImg);
+        containerele.appendChild(titleEle);
+    })
 }

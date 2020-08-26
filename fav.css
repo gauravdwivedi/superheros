@@ -1,0 +1,19 @@
+
+.fav-list{
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
+    height: 500px;
+}
+
+.fav-list img{
+    width: 150px;
+    height: 150px;
+}
+
+.fav-list__title{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
