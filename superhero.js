@@ -52,17 +52,11 @@ init = (data) => {
         txtele.appendChild(favBtn);
 
         ele.appendChild(image);
-        ele.appendChild(txtele);
+        ele.prepend(txtele);
 
         // rescontainer.appendChild(ele);
         rescontainer.prepend(ele);
         favBtn.addEventListener('click', (e) => {
-
-
-            FavList.push(item);
-            console.log(FavList);
-
-            localStorage.setItem("data", item);
 
             openFav(item);
 
@@ -95,6 +89,7 @@ openFav = (item) => {
 
     containerele.appendChild(favImg);
     containerele.appendChild(titleEle);
+
 
 
 }
