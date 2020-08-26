@@ -120,7 +120,7 @@
 .fav-list-container__item{
     display: flex;
     flex-direction: row;
-
+    border: 1px solid black;
     
 }
 .fav-list-container__item-img{

@@ -67,12 +67,14 @@ init = (data) => {
 }
 
 openFav = (item) => {
+    //Hide Search list when added item to fav
     hideList();
     console.log("Inside Fav List function", item);
 
     // let containerele = document.createElement("div");
     containerele.classList.add("fav-list");
 
+    //inner container for items
     let favListInsideContainer = document.createElement("div");
     favListInsideContainer.classList.add("fav-list-container__item");
 
@@ -104,7 +106,6 @@ openFav = (item) => {
     let removefromFavBtn = document.createElement("button");
     removefromFavBtn.innerText = "UnFav";
     titleEle.appendChild(removefromFavBtn);
-
 
 
     favListInsideContainer.appendChild(favImg);
