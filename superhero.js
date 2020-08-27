@@ -1,7 +1,8 @@
 let FavList = [];
-
+let saveResultHtml;
 const rescontainer = document.getElementById('result-container');
 const containerele = document.getElementById('fav-list-container');
+let firstTime = true;
 async function searchApi(val) {
     try {
         const res = await fetch(`https://superheroapi.com/api.php/10157143645741244/search/${val}`);
@@ -56,14 +57,17 @@ init = (data) => {
 
         // rescontainer.appendChild(ele);
         rescontainer.prepend(ele);
+
+
         favBtn.addEventListener('click', (e) => {
-            
-            // FavList.push(item);
 
-            
+            FavList.push(item);
 
-            //openFav(item);
-            CheckOnLoad();
+            localStorage.setItem('FavList', JSON.stringify(FavList));
+
+
+            openFav(item);
+
 
         });
 
@@ -72,22 +76,14 @@ init = (data) => {
 }
 
 
-CheckOnLoad = () => {
 
-    let saved = localStorage.getItem('FavList');
 
-    if (saved) {
-        saved.map((item) => {
-            console.log('Item', item);
-        })
-    }
-
-}
-
-openFav = (item) => {
+openFav = (item, index) => {
 
     //Hide Search list when added item to fav
     hideList();
+
+
     console.log("Inside Fav List function", item);
 
     // let containerele = document.createElement("div");
@@ -124,6 +120,7 @@ openFav = (item) => {
 
     let removefromFavBtn = document.createElement("button");
     removefromFavBtn.innerText = "UnFav";
+    removefromFavBtn.setAttribute("id", index);
     titleEle.appendChild(removefromFavBtn);
 
 
@@ -132,6 +129,11 @@ openFav = (item) => {
     containerele.prepend(favListInsideContainer);
 
 
+
+    // console.log("Called");
+    // if (containerele !== 'undefined') {
+    //     saveResultHtml = containerele.innerHTML;
+    // }
 
 }
 
@@ -142,3 +144,17 @@ hideList = () => {
     let inputCont = document.getElementById('search-input');
     inputCont.value = '';
 }
+
+window.onload = () => {
+
+    // document.getElementById('fav-list-container').innerHTML = localStorage.getItem('FavList');
+
+    //parsing saved list into arrayList
+    FavList = JSON.parse(localStorage.getItem('FavList'));
+
+    FavList.map((item, index) => {
+        openFav(item, index);
+    })
+
+}
+
