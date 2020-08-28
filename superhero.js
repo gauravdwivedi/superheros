@@ -142,10 +142,11 @@ window.onload = () => {
     console.log("Inside Onload");
 
     let saved = JSON.parse(localStorage.getItem('FavList'));
-    FavList = saved;
 
     console.log("FavList on Load after saving saved from LocalStorage");
     if (saved !== null) {
+        FavList = saved;
+
         saved.map((item) => {
             // openFav(item, index);
             openFav(item);
