@@ -122,23 +122,14 @@ function openFav(item) {
         if (index > -1) {
             FavList.splice(index, 1);
         }
-            
+
         containerele.removeChild(favListInsideContainer);
-
-
-
-        console.log(index);
-        console.log(FavList);
 
         localStorage.setItem('FavList', JSON.stringify(FavList));
 
 
     })
 
-    // console.log("Called");
-    // if (containerele !== 'undefined') {
-    //     saveResultHtml = containerele.innerHTML;
-    // }
 
 
 }
