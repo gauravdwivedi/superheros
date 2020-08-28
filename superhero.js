@@ -1,5 +1,5 @@
-
 let FavList = [];
+
 const rescontainer = document.getElementById('result-container');
 const containerele = document.getElementById('fav-list-container');
 
@@ -87,6 +87,7 @@ function openFav(item) {
 
     let titleEle = document.createElement("div");
     titleEle.classList.add("fav-list__title");
+
     let titletxt = document.createElement("span");
     titletxt.innerText = item.name;
     titleEle.appendChild(titletxt);
@@ -104,22 +105,41 @@ function openFav(item) {
     power.innerText = "Power : " + item.powerstats["power"];
     titleEle.appendChild(power);
 
-
     let removefromFavBtn = document.createElement("button");
     removefromFavBtn.innerText = "UnFav";
     // removefromFavBtn.setAttribute("id", index);
     titleEle.appendChild(removefromFavBtn);
 
-
     favListInsideContainer.appendChild(favImg);
     favListInsideContainer.appendChild(titleEle);
     containerele.prepend(favListInsideContainer);
 
+    //remove favor from Fav list
+    removefromFavBtn.addEventListener('click', function () {
+
+        const index = FavList.indexOf(item);
+
+        if (index > -1) {
+            FavList.splice(index, 1);
+        }
+            
+        containerele.removeChild(favListInsideContainer);
+
+
+
+        console.log(index);
+        console.log(FavList);
+
+        localStorage.setItem('FavList', JSON.stringify(FavList));
+
+
+    })
 
     // console.log("Called");
     // if (containerele !== 'undefined') {
     //     saveResultHtml = containerele.innerHTML;
     // }
+
 
 }
 
@@ -130,8 +150,6 @@ function hideList() {
     let inputCont = document.getElementById('search-input');
     inputCont.value = '';
 }
-
-
 
 window.onload = () => {
 
@@ -152,10 +170,10 @@ window.onload = () => {
             openFav(item);
         })
     }
-
 }
 
 
 clearLS = () => {
     localStorage.clear();
 }
+
