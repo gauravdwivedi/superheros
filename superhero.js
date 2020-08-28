@@ -1,19 +1,20 @@
+
 let FavList = [];
-let saveResultHtml;
+// let saveResultHtml;
 const rescontainer = document.getElementById('result-container');
 const containerele = document.getElementById('fav-list-container');
-let firstTime = true;
+// let firstTime = true;
+
 async function searchApi(val) {
     try {
         const res = await fetch(`https://superheroapi.com/api.php/10157143645741244/search/${val}`);
-
 
 
         const data = await res.json();
 
         if (data.response !== 'error') {
 
-            console.log('Inside Data', data.response);
+            //console.log('Inside Data', data.response);
             init(data);
         } else {
             hideList();
@@ -24,7 +25,8 @@ async function searchApi(val) {
     }
 }
 
-init = (data) => {
+//creating the search list item
+function init(data) {
     rescontainer.style.visibility = "visible";
     rescontainer.style.opacity = "1";
     let res = data.results;
@@ -58,16 +60,13 @@ init = (data) => {
         // rescontainer.appendChild(ele);
         rescontainer.prepend(ele);
 
-
         favBtn.addEventListener('click', (e) => {
 
             FavList.push(item);
-
+            console.log("FavList Array", FavList);
             localStorage.setItem('FavList', JSON.stringify(FavList));
 
-
             openFav(item);
-
 
         });
 
@@ -77,12 +76,10 @@ init = (data) => {
 
 
 
-
-openFav = (item, index) => {
+function openFav(item) {
 
     //Hide Search list when added item to fav
     hideList();
-
 
     console.log("Inside Fav List function", item);
 
@@ -108,7 +105,6 @@ openFav = (item, index) => {
 
     titleEle.appendChild(bioInfo);
 
-
     let combat = document.createElement("p");
     combat.innerText = "combat : " + item.powerstats["combat"];
     titleEle.appendChild(combat);
@@ -118,16 +114,15 @@ openFav = (item, index) => {
     titleEle.appendChild(power);
 
 
-    let removefromFavBtn = document.createElement("button");
-    removefromFavBtn.innerText = "UnFav";
-    removefromFavBtn.setAttribute("id", index);
-    titleEle.appendChild(removefromFavBtn);
+    // let removefromFavBtn = document.createElement("button");
+    // removefromFavBtn.innerText = "UnFav";
+    // // removefromFavBtn.setAttribute("id", index);
+    // titleEle.appendChild(removefromFavBtn);
 
 
     favListInsideContainer.appendChild(favImg);
     favListInsideContainer.appendChild(titleEle);
     containerele.prepend(favListInsideContainer);
-
 
 
     // console.log("Called");
@@ -137,7 +132,7 @@ openFav = (item, index) => {
 
 }
 
-hideList = () => {
+function hideList() {
     rescontainer.style.visibility = "hidden";
     rescontainer.style.opacity = "0";
 
@@ -145,16 +140,44 @@ hideList = () => {
     inputCont.value = '';
 }
 
+
+
 window.onload = () => {
 
     // document.getElementById('fav-list-container').innerHTML = localStorage.getItem('FavList');
 
     //parsing saved list into arrayList
-    FavList = JSON.parse(localStorage.getItem('FavList'));
 
-    FavList.map((item, index) => {
-        openFav(item, index);
-    })
+    console.log("Inside Onload");
+
+    let saved = JSON.parse(localStorage.getItem('FavList'));
+
+    if (saved !== null) {
+        saved.map((item) => {
+            // openFav(item, index);
+            openFav(item);
+        })
+    }
 
 }
 
+
+clearLS = () => {
+    localStorage.clear();
+}
+
+// function loadList() {
+//    let saved = JSON.parse(localStorage.getItem('FavList'));
+
+//     saved.map((item) => {
+//         console.log(item)
+//     })
+
+//     if (FavList.length > 0) {
+//         FavList.map((item) => {
+//             // openFav(item, index);
+//             openFav(item);
+//         })
+
+//     }
+// }
