@@ -1,4 +1,7 @@
 
+
+
+
 /*Search Container*/
 .search-container{
     position: relative;
@@ -143,4 +146,9 @@
     border-radius: 30px;
     border: none;
     outline-style: none;
+}
+
+
+#clearlocalstorage{
+    float: right;
 }

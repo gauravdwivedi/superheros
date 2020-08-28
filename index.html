@@ -11,25 +11,27 @@
 </head>
 
 <body>
+    <div id="body_container">
+        <div class="search-container">
 
-    <div class="search-container">
-
-        <div class="search-container__searchbar">
-            <input id="search-input" type="text" class="search-container__searchbar__input"
-                oninput="searchApi(this.value)" />
-            <i class="material-icons">search</i>
+            <div class="search-container__searchbar">
+                <input id="search-input" type="text" class="search-container__searchbar__input"
+                    oninput="searchApi(this.value)" />
+                <i class="material-icons">search</i>
+            </div>
         </div>
-    </div>
-    <div id='result-container' class="search-container__search-result-container">
+        <div id="clearlocalstorage">
+            <button onclick="clearLS()">Clear LocalStorage</button>
+        </div>
+        <div id='result-container' class="search-container__search-result-container">
 
-    </div>
+        </div>
 
-    <div id="fav-list-container" class="fav-list">
+        <div id="fav-list-container" class="fav-list">
 
-    </div>
+        </div>
 
-    <div>
-        <button id="clearlocalstorage" onclick="clearLS()">Clear LocalStorage</button>
+
     </div>
     <script src='superhero.js'></script>
 

@@ -1,20 +1,14 @@
 
 let FavList = [];
-// let saveResultHtml;
 const rescontainer = document.getElementById('result-container');
 const containerele = document.getElementById('fav-list-container');
-// let firstTime = true;
 
 async function searchApi(val) {
     try {
         const res = await fetch(`https://superheroapi.com/api.php/10157143645741244/search/${val}`);
-
-
         const data = await res.json();
 
         if (data.response !== 'error') {
-
-            //console.log('Inside Data', data.response);
             init(data);
         } else {
             hideList();
@@ -65,12 +59,9 @@ function init(data) {
             FavList.push(item);
             console.log("FavList Array", FavList);
             localStorage.setItem('FavList', JSON.stringify(FavList));
-
+            console.log("After setitem : ", FavList);
             openFav(item);
-
         });
-
-
     })
 }
 
@@ -114,10 +105,10 @@ function openFav(item) {
     titleEle.appendChild(power);
 
 
-    // let removefromFavBtn = document.createElement("button");
-    // removefromFavBtn.innerText = "UnFav";
-    // // removefromFavBtn.setAttribute("id", index);
-    // titleEle.appendChild(removefromFavBtn);
+    let removefromFavBtn = document.createElement("button");
+    removefromFavBtn.innerText = "UnFav";
+    // removefromFavBtn.setAttribute("id", index);
+    titleEle.appendChild(removefromFavBtn);
 
 
     favListInsideContainer.appendChild(favImg);
@@ -151,7 +142,9 @@ window.onload = () => {
     console.log("Inside Onload");
 
     let saved = JSON.parse(localStorage.getItem('FavList'));
+    FavList = saved;
 
+    console.log("FavList on Load after saving saved from LocalStorage");
     if (saved !== null) {
         saved.map((item) => {
             // openFav(item, index);
@@ -165,19 +158,3 @@ window.onload = () => {
 clearLS = () => {
     localStorage.clear();
 }
-
-// function loadList() {
-//    let saved = JSON.parse(localStorage.getItem('FavList'));
-
-//     saved.map((item) => {
-//         console.log(item)
-//     })
-
-//     if (FavList.length > 0) {
-//         FavList.map((item) => {
-//             // openFav(item, index);
-//             openFav(item);
-//         })
-
-//     }
-// }
