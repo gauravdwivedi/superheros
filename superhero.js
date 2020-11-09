@@ -107,7 +107,6 @@ function openFav(item) {
 
     let removefromFavBtn = document.createElement("button");
     removefromFavBtn.innerText = "UnFav";
-    // removefromFavBtn.setAttribute("id", index);
     titleEle.appendChild(removefromFavBtn);
 
     favListInsideContainer.appendChild(favImg);
@@ -144,9 +143,6 @@ function hideList() {
 
 window.onload = () => {
 
-    // document.getElementById('fav-list-container').innerHTML = localStorage.getItem('FavList');
-
-    //parsing saved list into arrayList
 
     console.log("Inside Onload");
 
@@ -157,7 +153,6 @@ window.onload = () => {
         FavList = saved;
 
         saved.map((item) => {
-            // openFav(item, index);
             openFav(item);
         })
     }
